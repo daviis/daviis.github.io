@@ -1,1 +1,34 @@
+#homeHead{
+ background-color:#00F;
+ width:100%;
+ height:80%;
+}
 
+#homeFoot{
+ background-color:#00F;
+ clear:both;
+ width:100%;
+ height:10%;
+}
+
+#content{
+ background-color:#0F0;
+ height:80%;
+}
+
+#nav{
+ float:left;
+ background-color:#2D0;
+}
+
+#homepic{
+ background-color:red;
+ float:right;
+ width:80%;
+}
+
+.container{
+ background-color:#90F;
+ width=100%;
+ height=100%;
+}
