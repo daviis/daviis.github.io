@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="stylesheet" type="text/css" href="theme.css">
+ <title>IsaacDavis</title>
+ <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="theme.css" type="text/css" charset="utf-8">
+</head>
+<body>
+<<<<<<< HEAD
+ <header class="col-md-12 col-xs-12"> 
+  <h1>Its Isaac Davis for everyone to see</h1>
+  <p>(Still under production)</p>
+ </header>
+ <div class="content col-md-4">
+  <div class="nav col-md-4">
+   <bl>
+    <li><a href="motorcycle.html">Motorcycle</a></li>
+    <li><a href="classes.html">Classes</a></li>
+    <li><a href="links.html">Links</a></li>
+   </bl>  
+  </div>
+  <div class="text col-md-8 col-xs-12">
+   <p>And Walker!</p>
+   <img src="pics/walkerandIsaac.jpg">
+  </div>
+ </div>
+ <footer class="foot col-md-12 col-xs-12">
+  <p>isaac@luther.edu isaac_ham_davis@twitter</p>
+ </footer>
+ <script src="https://code.jquery.com/jquery.js"></script>
+ <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+=======
+<div class="container"> 
+ <header id="homeHead"> 
+  <h1>Its Isaac Davis for everyone to see</h1>
+ </header>
+<div id="content">
+ <div id="nav">
+  <bl>
+   <h4>Navigation</h4>
+   <li><a href="motorcycle.html">Motorcycle</a></li>
+   <li><a href="classes.html">Classes</a></li>
+   <li><a href="links.html">Links</a></li>
+  </bl>
+ </div>
+ <div id="homepic">
+  <p>And Walker!</p>
+  <img src="pics/walkerandIsaac.jpg" >
+ </div>
+</div>
+ <footer id="homeFoot">
+  <p>isaac@luther.edu isaac_ham_davis@twitter</p>
+ </footer>
+</div>
+>>>>>>> df118ad2adc600e540df11d452cdf26a72120a32
+</body>
+</html>
