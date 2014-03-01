@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+		<title>Word Ladder</title>
+	</head>
+	<body>
+		<h1>Word Ladder in javascript</h1>
+		<span id="input">
+			<textarea rows="2" cols="10" id="startWord"></textarea>
+			<textarea rows="2" cols="10" id="endWord"></textarea>
+			<select id="length">
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>	
+			<button onclick="startLadder()">GO!</button>
+			<button onClick="abort()">Abortion!</button>
+		</span>
+		<span id="output">
+
+
+		</span>
+		<script type="text/javascript" src="makeLadder.js"></script>
+	</body>
+</html>
