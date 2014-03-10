@@ -3,6 +3,10 @@ var abort = function(){
 }
 
 var startLadder = function(){
+	var outField = document.getElementById("output")
+	if(outField.hasChildNodes()){
+		outField.removeChild(outField.firstChild)
+	}
 	var startWord = document.getElementById("startWord").value
 	var endWord = document.getElementById("endWord").value
 	var wordLength = document.getElementById("length").value
@@ -26,7 +30,7 @@ var startLadder = function(){
 	else{
 		wordSet = new MySet(fiveLetterWords)	
 	}
-	if(wordSet.contains(startWord) < 0 || wordSet.contains(endWord) < 0){
+	if(!errorState && (wordSet.contains(startWord) < 0 || wordSet.contains(endWord) < 0)){
 		console.log("out of set")
 		errorState = true
 		out.innerHTML = "At least one of the words is not in the set of ladder words"
@@ -41,10 +45,6 @@ var startLadder = function(){
 		for(var i = 0; i < finalLen; i++){
 			out.innerHTML = out.innerHTML + "<li>" + finalList.pop() + "</li>"
 		}
-	}
-	outField = document.getElementById("output")
-	if(outField.hasChildNodes()){
-		outField.removeChild(outField.firstChild)
 	}
 	outField.appendChild(out)
 	
@@ -102,28 +102,28 @@ var offByOne = function(wOne, wTwo){
 
 //classes for doing data management
 var MySet = function(words){
-	this.arr = words
+	var arr = words
 	var len = words.length
 	var pointer = 0
 
-	this.onNext = this.arr[0]
+	this.onNext = arr[0]
 	
 	this.next = function(){
 		if(pointer + 2 > len){
 			return false
 		}
 		pointer += 1
-		this.onNext = this.arr[pointer]
+		this.onNext = arr[pointer]
 		return true
 	}
 	
 	this.place = function(){
-		return this.arr[pointer]
+		return arr[pointer]
 	}
 
 	this.add = function(aWord){
 		if(this.contains(aWord) < 0){
-			this.arr.push(aWord)
+			arr.push(aWord)
 			len += 1
 			return true
 		}
@@ -137,7 +137,7 @@ var MySet = function(words){
 		var position = this.contains(aWord)
 		if(position > 0){
 			len -=1
-			this.arr.splice(position, 1)
+			arr.splice(position, 1)
 			return true
 		}
 		else{
@@ -147,20 +147,17 @@ var MySet = function(words){
 	
 	this.resetPointer = function(){
 		pointer = 0
-		this.onNext = this.arr[pointer]
+		this.onNext = arr[pointer]
 	}
 	
 	this.contains = function(aWord){
-		return this.arr.indexOf(aWord)
+		return arr.indexOf(aWord)
 	}
 
 	this.length = function(){
 		return len
 	}
 
-	this.pointer = function(){
-		return pointer
-	}
 }
 
 
