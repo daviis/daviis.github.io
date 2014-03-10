@@ -28,7 +28,7 @@ var userInput = function(){
 
 var getRandom = function(){
   var request = new XMLHttpRequest();
-  var URL = "http://daviis.github.io/cgi-bin/json_random.py?length=10"
+  var URL = "http://localhost:8000/cgi-bin/json_random.py?length=10"
  
   request.onreadystatechange = function() {
     if (request.readyState==4 && request.status==200){
