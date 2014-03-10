@@ -1,10 +1,7 @@
 var outputTable = document.createElement("table")
 var outputTree = document.createElement("table")
 
-var mainControll = function(){
- var userNumber = document.getElementById("inputNumber").value
- var resultArray = new Array()
- findPrime(userNumber, resultArray) 
+var mainControll = function(userNumber, resultArray){
  var outputSpace = document.getElementById("outTable")
  var rowOne = document.createElement("tr")
  rowOne.innerHTML = "<th>YourNumber: </th><th>" + userNumber +"</th>"
@@ -21,6 +18,34 @@ var mainControll = function(){
  var resTablePlace = document.getElementById("outTree")
  makeFactorTreeTwo(resultArray)
 }
+
+var userInput = function(){
+ var userNumber = document.getElementById("inputNumber").value
+ var resultArray = new Array()
+ findPrime(userNumber, resultArray) 
+ mainControll(userNumber, resultArray)
+}
+
+var getRandom = function(){
+  var request = new XMLHttpRequest();
+  var URL = "http://ws4599.dynamic.luther.edu:8000/cgi-bin/json_random.py?length=10"
+ 
+  request.onreadystatechange = function() {
+    if (request.readyState==4 && request.status==200){
+    var A = JSON.parse(request.responseText)
+    console.log(A)
+	for(var i =0; i < A.length; i++){
+	  var arr = new Array()
+	  findPrime(A[i], arr)
+	  mainControll(A[i], arr)
+	}
+    }
+  }
+  request.open("GET",URL,true);
+  request.send();
+
+}
+
 
  
 var findPrime = function(largeNumber, primeArray){
