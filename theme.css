@@ -14,6 +14,11 @@ input:checked{
   text-decoration:line-through;
 }
 
+.checkboxItem:checked + .lableCheckbox{
+  text-decoration:line-through;
+
+}
+
 #newItemArea{
 	background-color:#FF0;
 }

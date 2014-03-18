@@ -4,7 +4,6 @@ import yaml
 import os
 import string
 
-
 def makeChanges():
 	if 'QUERY_STRING' in os.environ:
 		if os.environ["QUERY_STRING"] != "":
@@ -41,7 +40,13 @@ def makeChanges():
 							del (aDict[project][int(key)])	
 					elif queryDict['newItemMsg'] != '':
 						newIdNum = 4
-						aDict[queryDict['newItemCat']][str(newIdNum)] = {queryDict["newItemMsg"]}	
+						newTask = {}
+						newTask['task'] = queryDict["newItemMsg"].replace('+', ' ')
+						try:
+							aDict[queryDict['newItemCat']][newIdNum] = newTask
+						except TypeError as ex:
+							aDict[queryDict['newItemCat']] = {}
+							aDict[queryDict['newItemCat']][newIdNum] = newTask
 				print("res dict ", aDict)
 				aFile.close()
 				aFile = open("/home/students/daviis01/cs365/daviis.github.io/todo/todo.dat", "w")
@@ -56,12 +61,17 @@ def makeWebpage():
 	print ("")
 	print ('''<head>
 		<link rel="stylesheet" type="text/css" href="../theme.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="../todo/checked.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+		<title>TODO</title>
 		</head>
 		<body>''')
 	try:
 		aFile = open("/home/students/daviis01/cs365/daviis.github.io/todo/todo.dat")
-		aDict = yaml.load(aFile)		
-		print("<h1>ToDo!</h1>")
+		aDict = yaml.load(aFile)
+		print("<header><h1>ToDo!</h1></header>")
 		print("<form>")
 		for key in sorted(aDict):
 			print("<h3>"+key+"</h3>")
@@ -69,13 +79,18 @@ def makeWebpage():
 				for todoItem in aDict[key]:
 					try:
 						itemDict = aDict[key][todoItem]
-						print("<div class="+ str(itemDict['priority']) +">")
+				#		print("<div class="+ str(itemDict['priority']) +">")
+						print("<div id=", todoItem, ">")
 					except KeyError:
-						print("<div>")
+						print("<div id=", todoItem, ">")
 						continue					
 					finally:
-						print("<input type=checkbox class="+ str(todoItem)+" name="+str(todoItem)+">"+str(itemDict['task'])+"</input>")
-						print("<br>")
+						print('''<input type=checkbox class="checkboxItem" id=''', todoItem, ''' name=''', todoItem, '''>''')
+						print('''<label for=''', todoItem, '''class="lableCheckbox">''')
+						print( itemDict['task'])
+						print('''</label>''')
+					#	print("<p>", itemDict['task'], "</p>")
+						print("</input>")
 						print("</div>")
 
 		makeNewItem(aDict)
@@ -91,7 +106,7 @@ def makeNewItem(aDict):
 	print('''<div id="newItemArea">''')
 	print('''<h3>Make a new todo</h3>''')
 	print('''<select name="newItemCat">''')
-	for item in aDict:
+	for item in sorted(aDict):
 		if item != 'done':
 			print('''	<option value=''' + item + '''>''' + item + '''</option>''')
 	print('''<input name=newItemMsg type=text></input>''')
