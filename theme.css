@@ -9,3 +9,11 @@ header{
 .low{
   background-color:#0F0;
 }
+
+input:checked{
+  text-decoration:line-through;
+}
+
+#newItemArea{
+	background-color:#FF0;
+}
