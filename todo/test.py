@@ -1,0 +1,1 @@
+print ("the".replace('t', ' '))

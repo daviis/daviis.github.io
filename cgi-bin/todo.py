@@ -16,7 +16,13 @@ def makeChanges():
 			try:
 				aFile = open("/home/students/daviis01/cs365/daviis.github.io/todo/todo.dat")
 				aDict = yaml.load(aFile)
-				numIdNum = 5
+				newIdNum = 1
+				for item in aDict:
+					try:
+						for subItem in aDict[item]:
+							newIdNum += 1
+					except:
+						pass 
 				print("start dict ", aDict)
 				for key in queryDict:
 					project = "home"
@@ -39,7 +45,6 @@ def makeChanges():
 							aDict['done'][int(key)] = aDict[project][int(key)]
 							del (aDict[project][int(key)])	
 					elif queryDict['newItemMsg'] != '':
-						newIdNum = 4
 						newTask = {}
 						newTask['task'] = queryDict["newItemMsg"].replace('+', ' ')
 						try:
